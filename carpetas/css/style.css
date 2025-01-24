@@ -4,10 +4,10 @@ body, html {
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   margin: 0;
-  background-image: url(../img/fondo.jpg);
+  background-image: url('../img/fondo.jpg');
   background-size: cover;
   background-position: center;
-  color: white;
+  color: black;
   height: 100%;
   width: 100%;
 }
