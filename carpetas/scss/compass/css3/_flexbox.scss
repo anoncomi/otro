@@ -1,0 +1,81 @@
+@import "compass/support";
+
+$flexbox-support-threshold: $critical-usage-threshold !default;
+
+
+$flexbox-capability-options: (
+  (full-support: true),
+  (partial-support: true, spec-versions: 3)
+);
+
+
+@mixin flexbox($properties, $version: null) {
+  $capability-options: $flexbox-capability-options;
+  @if $version {
+    $capability-options: (partial-support: true, spec-versions: $version);
+  }
+
+  @include with-each-prefix(flexbox, $flexbox-support-threshold, $capability-options) {
+    @if $version and $current-prefix or not $version or $version == 3 {
+      @each $prop, $value in $properties {
+        @if $prop == display {
+          display: prefix-identifier($value);
+        } @else {
+          @include prefix-prop($prop, $value);
+        }
+      }
+    }
+  }
+}
+
+@mixin display-flex($display: flex) {
+  @include flexbox((display: $display));
+}
+
+@mixin flex-direction($direction) {
+  @include flexbox((flex-direction: $direction));
+}
+
+@mixin flex-wrap($wrap) {
+  @include flexbox((flex-wrap: $wrap));
+}
+
+@mixin flex-flow($flow) {
+  @include flexbox((flex-flow: $flow));
+}
+
+@mixin order($order) {
+  @include flexbox((order: $order));
+}
+
+@mixin flex($flex) {
+  @include flexbox((flex: $flex));
+}
+
+@mixin flex-grow($flex-grow) {
+  @include flexbox((flex-grow: $flex-grow));
+}
+
+@mixin flex-shrink($flex-shrink) {
+  @include flexbox((flex-shrink: $flex-shrink));
+}
+
+@mixin flex-basis($flex-basis) {
+  @include flexbox((flex-basis: $flex-basis));
+}
+
+@mixin justify-content($justify-content) {
+  @include flexbox((justify-content: $justify-content));
+}
+
+@mixin align-items($align-items) {
+  @include flexbox((align-items: $align-items));
+}
+
+@mixin align-self($align-self) {
+  @include flexbox((align-self: $align-self));
+}
+
+@mixin align-content($align-content) {
+  @include flexbox((align-content: $align-content));
+}

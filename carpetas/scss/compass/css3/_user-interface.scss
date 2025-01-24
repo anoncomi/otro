@@ -1,0 +1,31 @@
+
+@import "compass/support";
+
+$userselect-support-threshold: $graceful-usage-threshold !default;
+
+@mixin user-select($select) {
+  $select: unquote($select);
+
+  @include with-each-prefix(user-select-none, $userselect-support-threshold) {
+    @include prefix-prop(user-select, if($current-prefix == -moz and $select == 'none', -moz-none, $select));
+  }
+}
+
+$input-placeholder-support-threshold: $graceful-usage-threshold !default;
+
+@mixin input-placeholder {
+  @include with-each-prefix(css-placeholder, $input-placeholder-support-threshold) {
+    @if $current-prefix == -webkit {
+      &::-webkit-input-placeholder { @content; }
+    }
+    @elseif $current-prefix == -moz {
+      @if support-legacy-browser("firefox", "4", "19", $threshold: $input-placeholder-support-threshold) {
+        &:-moz-placeholder { @content; }
+      }
+      &::-moz-placeholder { @content; }
+    }
+    @elseif $current-prefix == -ms {
+      &:-ms-input-placeholder { @content; }
+    }
+  }
+}

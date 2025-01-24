@@ -1,0 +1,36 @@
+@import "compass/support";
+
+$filter-support-threshold: $graceful-usage-threshold !default;
+
+
+@mixin filter($filters) {
+  @include prefixed-properties(css-filters, $filter-support-threshold,(
+    filter: $filters
+  ));
+}
+
+@mixin apply-filter-margin($position, $width) {
+  @include prefixed-properties(css-filters, $filter-support-threshold,(
+    filter-margin-#{$position}: $width
+  ));
+}
+
+@mixin filter-margin-top($width) { @include apply-filter-margin(top, $width); }
+
+@mixin filter-margin-right($width) { @include apply-filter-margin(right, $width); }
+
+@mixin filter-margin-bottom($width) { @include apply-filter-margin(bottom, $width); }
+
+@mixin filter-margin-left($width) { @include apply-filter-margin(left, $width); }
+
+@mixin filter-margin($widths) {
+  @include prefixed-properties(css-filters, $filter-support-threshold,(
+    filter-margin: $widths
+  ));
+}
+
+@mixin color-interpolation-filters($value) {
+  @include prefixed-properties(css-filters, $filter-support-threshold,(
+    color-interpolation-filters: $value
+  ));
+}

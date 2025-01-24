@@ -1,0 +1,64 @@
+@import "deprecated-support";
+
+@warn "The compass/css3/box module is DEPRECATED and will be removed in the next release. Please use compass/css3/flexbox instead.";
+
+$legacy-box-support: -moz, -webkit, not -o, -ms, not -khtml;
+
+$default-box-orient         : horizontal      !default;
+
+$default-box-align          : stretch         !default;
+
+$default-box-flex           : 0               !default;
+
+$default-box-flex-group     : 1               !default;
+
+$default-box-direction      : normal          !default;
+
+$default-box-ordinal-group  : 1               !default;
+
+$default-box-lines          : single          !default;
+
+$default-box-pack           : start           !default;
+
+
+@mixin display-box {
+  @include experimental-value(display, box, $legacy-box-support...);
+}
+
+@mixin box-orient($orientation: $default-box-orient) {
+  $orientation : unquote($orientation);
+  @include experimental(box-orient, $orientation, $legacy-box-support...);
+}
+
+@mixin box-align($alignment: $default-box-align) {
+  $alignment : unquote($alignment);
+  @include experimental(box-align, $alignment, $legacy-box-support...);
+}
+
+//
+@mixin box-flex($flex: $default-box-flex) {
+  @include experimental(box-flex, $flex, $legacy-box-support...);
+}
+
+@mixin box-flex-group($group: $default-box-flex-group) {
+  @include experimental(box-flex-group, $group, $legacy-box-support...);
+}
+
+@mixin box-ordinal-group($group: $default-box-ordinal-group) {
+  @include experimental(box-ordinal-group, $group, $legacy-box-support...);
+}
+
+@mixin box-direction($direction: $default-box-direction) {
+  $direction: unquote($direction);
+  @include experimental(box-direction, $direction, $legacy-box-support...);
+}
+
+@mixin box-lines($lines: $default-box-lines) {
+  $lines: unquote($lines);
+  @include experimental(box-lines, $lines, $legacy-box-support...);
+}
+
+@mixin box-pack($pack: $default-box-pack) {
+  $pack: unquote($pack);
+  @include experimental(box-pack, $pack, $legacy-box-support...);
+}

@@ -1,0 +1,25 @@
+
+@import "compass/support";
+
+$hyphens-support-threshold: $graceful-usage-threshold !default;
+
+
+@mixin word-break($value: normal){
+  word-break: $value;
+  @if $value == break-all {
+    @include with-prefix(-webkit) {
+      word-break: break-word;
+    }
+  }
+}
+
+@mixin hyphens($value: auto){
+  @include prefixed-properties(css-hyphens, $hyphens-support-threshold, (
+    hyphens: $value
+  ));
+}
+
+@mixin hyphenation {
+  @include word-break(break-all);
+  @include hyphens;
+}

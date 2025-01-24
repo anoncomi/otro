@@ -1,0 +1,10 @@
+@import "compass/support";
+
+$background-size-threshold: $critical-usage-threshold !default;
+
+$default-background-size: 100% auto !default;
+
+@mixin background-size($size...) {
+  $size: set-arglist-default($size, $default-background-size);
+  @include prefixed-properties(background-img-opts, $background-size-threshold, (background-size: $size));
+}

@@ -1,0 +1,11 @@
+
+@import "compass/support";
+
+$box-sizing-support-threshold: $critical-usage-threshold !default;
+
+$default-box-sizing: border-box !default;
+
+@mixin box-sizing($box-model: $default-box-sizing) {
+  $box-model: unquote($box-model);
+  @include prefixed-properties(css3-boxsizing, $box-sizing-support-threshold, (box-sizing: $box-model));
+}

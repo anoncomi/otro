@@ -1,0 +1,30 @@
+@import "compass/support";
+
+$background-origin-threshold: $critical-usage-threshold !default;
+
+
+$default-background-origin: content-box !default;
+
+
+@mixin background-origin($origin...) {
+  $output: ();
+  $deprecated: ();
+
+  @if (length($origin) > 0) {
+    @each $layer in $origin {
+      $output: append($output, unquote($layer), comma);
+      $deprecated: append($deprecated, legacy-box($layer), comma);
+    }
+  } @else {
+    $output: $default-background-origin;
+    $deprecated: legacy-box($default-background-origin);
+  }
+
+  @include with-each-prefix(background-img-opts, $background-origin-threshold) {
+    @if $current-prefix == -moz or $current-prefix == -webkit {
+      @include prefix-prop(background-origin, $deprecated)
+    } @else {
+      @include prefix-prop(background-origin, $output)
+    }
+  }
+}
